@@ -14,19 +14,8 @@ steps:
     displayName: 'Instalar dependências'
 
   - script: |
-      npx cypress run --spec "cypress/e2e/**/*.cy.js" \
-        --config video=false \
-        --reporter cypress-mochawesome-reporter \
-        --reporter-options reportDir=cypress/reports/html,json=true,html=true
+      npx cypress run --spec "cypress/e2e/**/*.cy.js"
     displayName: 'Executar testes Cypress'
-
-  - script: ls -l cypress/reports/html
-    displayName: 'Listar arquivos no diretório de relatórios'
-
-  - script: |
-      npx mochawesome-merge cypress/reports/html/*.json > mochawesome.json
-      npx marge mochawesome.json --reportDir cypress/reports/html --reportFilename index.html
-    displayName: 'Gerar relatório Mochawesome'
 
   - task: PublishPipelineArtifact@1
     inputs:
@@ -34,11 +23,3 @@ steps:
       artifact: 'relatorio-cypress'
       publishLocation: 'pipeline'
     displayName: 'Publicar relatório como artefato'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'cypress/screenshots'
-      ArtifactName: 'ScreenshotsCypress'
-      publishLocation: 'Container'
-    condition: succeededOrFailed()
-    continueOnError: true
