@@ -14,11 +14,7 @@ steps:
     displayName: 'Instalar dependências'
 
   - script: |
-      export TERM=xterm
-      npx cypress run --spec "cypress/e2e/**" \
-        --config video=false \
-        --reporter mocha-junit-reporter \
-        --reporter-options mochaFile=cypress/reports/results.xml
+      npx cypress run --spec "cypress/e2e/**"
     displayName: 'Executar testes Cypress'   
 
   - script: |
