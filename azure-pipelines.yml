@@ -13,22 +13,25 @@ steps:
   - script: npm install
     displayName: 'Instalar dependências'
 
-  - script: npx cypress run --spec "cypress/e2e/**" --config video=false
+  - script: npx cypress run --spec "cypress/e2e/**" --config video=false --reporter mocha-junit-reporter --reporter-options mochaFile=cypress/reports/results.xml
     displayName: 'Executar testes Cypress'
+
+  - script: |
+      npx mochawesome-merge cypress/reports/*.json > cypress/reports/output.json
+      npx mochawesome-report-generator cypress/reports/output.json --reportDir cypress/reports --inline
+    displayName: 'Gerar relatório HTML'
 
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: '**/cypress/reports/*.xml'  # Para JUnit se estiver gerando XML
+      testResultsFiles: '**/cypress/reports/*.xml'
     condition: succeededOrFailed()
-    displayName: 'Publicar resultados de teste'
 
   - task: PublishBuildArtifacts@1
     inputs:
       PathtoPublish: 'cypress/reports'
       ArtifactName: 'RelatorioCypress'
       publishLocation: 'Container'
-    displayName: 'Publicar relatórios Cypress'
 
   - task: PublishBuildArtifacts@1
     inputs:
@@ -36,4 +39,4 @@ steps:
       ArtifactName: 'ScreenshotsCypress'
       publishLocation: 'Container'
     condition: succeededOrFailed()
-    displayName: 'Publicar screenshots de falhas'
+    continueOnError: true
