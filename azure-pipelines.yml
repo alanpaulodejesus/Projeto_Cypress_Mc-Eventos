@@ -13,5 +13,27 @@ steps:
   - script: npm install
     displayName: 'Instalar dependências'
 
-  - script: npx cypress run --spec "cypress/e2e/**"
+  - script: npx cypress run --spec "cypress/e2e/**" --config video=false
     displayName: 'Executar testes Cypress'
+
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/cypress/reports/*.xml'  # Para JUnit se estiver gerando XML
+    condition: succeededOrFailed()
+    displayName: 'Publicar resultados de teste'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'cypress/reports'
+      ArtifactName: 'RelatorioCypress'
+      publishLocation: 'Container'
+    displayName: 'Publicar relatórios Cypress'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'cypress/screenshots'
+      ArtifactName: 'ScreenshotsCypress'
+      publishLocation: 'Container'
+    condition: succeededOrFailed()
+    displayName: 'Publicar screenshots de falhas'

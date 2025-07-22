@@ -11,5 +11,13 @@ module.exports = defineConfig({
           openMode: 5
     }
     }
-  }
+  },
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'cypress/reports',
+    overwrite: false,
+    html: true,
+    json: true
+  },
+  video: false
 });
