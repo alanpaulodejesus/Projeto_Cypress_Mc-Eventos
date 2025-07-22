@@ -7,21 +7,14 @@ module.exports = defineConfig({
       return config;
     },
     specPattern: 'cypress/e2e/**/*.cy.js',
+    baseUrl: 'https://micro-servico-evento.onrender.com',
+    retries: {
+      runMode: 5,
+      openMode: 5
+    },
     env: {
       baseUrlApi: 'https://micro-servico-evento.onrender.com',
-      baseUrlApp: 'https://micro-servico-evento.onrender.com',
-      retries: {
-          runMode: 5,
-          openMode: 5
+      baseUrlApp: 'https://micro-servico-evento.onrender.com'
     }
-    }
-  },
-  reporter: 'cypress-mochawesome-reporter',
-  reporterOptions: {
-    reportDir: 'cypress/reports',
-    overwrite: false,
-    html: true,
-    json: true
-  },
-  video: false
+  }
 });

@@ -20,24 +20,11 @@ steps:
         --reporter-options mochaFile=cypress/reports/results.xml
     displayName: 'Executar testes Cypress'
 
-  - script: |
-      npx mochawesome-merge cypress/reports/*.json > cypress/reports/output.json
-      npx mochawesome-report-generator cypress/reports/output.json --reportDir cypress/reports --inline
-    displayName: 'Gerar relatório HTML (Mochawesome)'
-
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
-      testResultsFiles: 'cypress/reports/results.xml'
+      testResultsFiles: '**/cypress/reports/*.xml'
     condition: succeededOrFailed()
-    displayName: 'Publicar resultado JUnit no Azure'
-
-  - task: PublishBuildArtifacts@1
-    inputs:
-      PathtoPublish: 'cypress/reports'
-      ArtifactName: 'RelatorioCypress'
-      publishLocation: 'Container'
-    displayName: 'Publicar relatório HTML como artefato'
 
   - task: PublishBuildArtifacts@1
     inputs:
@@ -46,4 +33,3 @@ steps:
       publishLocation: 'Container'
     condition: succeededOrFailed()
     continueOnError: true
-    displayName: 'Publicar screenshots de falhas'
