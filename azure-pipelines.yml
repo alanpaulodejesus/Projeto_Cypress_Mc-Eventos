@@ -17,7 +17,7 @@ steps:
       npx cypress run --spec "cypress/e2e/**/*.cy.js" \
         --config video=false \
         --reporter cypress-mochawesome-reporter \
-        --reporter-options reportDir=cypress/reports/html,json=true,html=false
+        --reporter-options reportDir=cypress/reports/html,json=true,html=true
     displayName: 'Executar testes Cypress'
 
   - script: ls -l cypress/reports/html
