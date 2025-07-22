@@ -19,7 +19,12 @@ steps:
         --config video=false \
         --reporter mocha-junit-reporter \
         --reporter-options mochaFile=cypress/reports/results.xml
-    displayName: 'Executar testes Cypress'
+    displayName: 'Executar testes Cypress'   
+
+  - script: |
+      npx mochawesome-merge cypress/reports/html/*.json > mochawesome.json
+      npx marge mochawesome.json --reportDir cypress/reports/html --reportFilename index.html
+    displayName: 'Gerar relatório'
 
   - task: PublishTestResults@2
     inputs:
