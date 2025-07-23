@@ -13,6 +13,9 @@ steps:
   - script: npm install
     displayName: 'Instalar dependências'
 
+  - script: mkdir -p cypress/reports/html
+    displayName: 'Criar diretório de relatórios'
+  
   - script: |
       npx cypress run \
         --spec "cypress/e2e/**/*.cy.js"
@@ -25,7 +28,7 @@ steps:
 
   - script: |
       ls -lR cypress/reports/html
-    displayName: '📂 Listar arquivos do relatório gerado'  
+    displayName: 'Listar arquivos do relatório gerado'  
 
   - task: PublishPipelineArtifact@1
     inputs:
