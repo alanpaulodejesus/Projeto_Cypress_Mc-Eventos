@@ -14,7 +14,9 @@ steps:
     displayName: 'Instalar dependências'
 
   - script: |
-      npx cypress run --spec "cypress/e2e/**/*.cy.js"
+      npx cypress run --spec "cypress/e2e/**/*.cy.js"\
+      --reporter cypress-mochawesome-reporter \
+      --reporter-options "reportDir=cypress/reports/html,overwrite=false,html=true,json=true"
     displayName: 'Executar testes Cypress'
 
   - script: |
