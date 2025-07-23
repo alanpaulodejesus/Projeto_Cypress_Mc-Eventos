@@ -23,6 +23,10 @@ steps:
       npx marge cypress/reports/html/report.json -f report --reportDir cypress/reports/html
     displayName: 'Gerar relatório HTML a partir dos JSONs'
 
+  - script: |
+      ls -lR cypress/reports/html
+    displayName: '📂 Listar arquivos do relatório gerado'  
+
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: 'cypress/reports/html'
