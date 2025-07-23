@@ -20,12 +20,6 @@ steps:
         --reporter-options "reportDir=cypress/reports/html,overwrite=false,html=true,json=true"
     displayName: 'Executar testes Cypress'
 
-  - script: |
-      npx mochawesome-merge "cypress/reports/html/.jsons/*.json" -o cypress/reports/html/report.json
-      npx marge cypress/reports/html/report.json -f report --reportDir cypress/reports/html
-    displayName: 'Gerar relatório HTML a partir dos JSONs'
-
-
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: 'cypress/reports/html'
