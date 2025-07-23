@@ -18,17 +18,17 @@ steps:
   
   - script: |
       npx cypress run \
-        --spec "cypress/e2e/**/*.cy.js"
+        --spec "cypress/e2e/**/*.cy.js" --config-file cypress.config.js
     displayName: 'Executar testes Cypress'
+
+  - script: |
+      ls -lR cypress/reports/html
+    displayName: 'Verificar arquivos gerados pelo Cypress'    
 
   - script: |
       npx mochawesome-merge "cypress/reports/html/*.json" -o cypress/reports/html/report.json
       npx marge cypress/reports/html/report.json -f report --reportDir cypress/reports/html
     displayName: 'Gerar relatório HTML a partir dos JSONs'
-
-  - script: |
-      ls -lR cypress/reports/html
-    displayName: 'Listar arquivos do relatório gerado'  
 
   - task: PublishPipelineArtifact@1
     inputs:
