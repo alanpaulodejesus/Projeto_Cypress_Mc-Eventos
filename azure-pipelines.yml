@@ -17,6 +17,11 @@ steps:
       npx cypress run --spec "cypress/e2e/**/*.cy.js"
     displayName: 'Executar testes Cypress'
 
+  - script: |
+      npx mochawesome-merge cypress/reports/html/*.json -o cypress/reports/html/report.json
+      npx marge cypress/reports/html/report.json -f report --reportDir cypress/reports/html
+    displayName: 'Gerar relatório HTML a partir dos JSONs'
+
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: 'cypress/reports/html'
