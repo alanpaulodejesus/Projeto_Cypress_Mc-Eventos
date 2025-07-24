@@ -146,9 +146,9 @@ env: {
 ```
 
 ---
+## 📌 Projeto Original
 
-## 🤝 Contribuição
+Este projeto de testes foi construído com base na aplicação de gerenciamento de eventos desenvolvida por [Alan Paulo de Jesus](https://www.linkedin.com/in/alanpaulodejesus/) no [github](https://github.com/alanpaulodejesus).
 
-Sinta-se à vontade para abrir *issues* ou *pull requests* com melhorias ou novas ideias. Colaboração é sempre bem-vinda!
-
----
+🔗 Repositório original da aplicação:  
+[https://github.com/alanpaulodejesus/micro-servico-evento](https://github.com/alanpaulodejesus/micro-servico-evento)
