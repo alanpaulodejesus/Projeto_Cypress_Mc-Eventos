@@ -13,17 +13,17 @@ steps:
   - script: npm install
     displayName: 'Instalar dependências'
 
-  - script: mkdir -p cypress/reports/html
-    displayName: 'Criar diretório de relatórios'
+  #- script: mkdir -p cypress/reports/html
+    #displayName: 'Criar diretório de relatórios'
   
   - script: |
       npx cypress run \
         --spec "cypress/e2e/**/*.cy.js" --config-file cypress.config.js
     displayName: 'Executar testes Cypress'
 
-  - script: |
-      ls -lR cypress/reports/html
-    displayName: 'Verificar arquivos gerados pelo Cypress'    
+  #- script: |
+      #ls -lR cypress/reports/html
+    #displayName: 'Verificar arquivos gerados pelo Cypress'    
 
   - task: PublishPipelineArtifact@1
     inputs:
