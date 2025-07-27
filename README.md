@@ -152,3 +152,6 @@ Este projeto de testes foi construído com base na aplicação de gerenciamento 
 
 🔗 Repositório original da aplicação:  
 [https://github.com/alanpaulodejesus/micro-servico-evento](https://github.com/alanpaulodejesus/micro-servico-evento)
+
+🔗 Link de aplicação publicada ORender:  
+https://micro-servico-evento.onrender.com
